@@ -1,0 +1,423 @@
+/* Import Tailwind base styles */
+@import url('https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css');
+
+/* Define CSS variables for each theme */
+:root, [data-theme='aura-borealis'] {
+    --bg-primary: #020617;
+    --bg-secondary: rgba(15, 23, 42, 0.5);
+    --bg-tertiary: rgba(51, 65, 85, 0.7);
+    --bg-accent: #22d3ee;
+    --text-primary: #e2e8f0;
+    --text-secondary: #94a3b8;
+    --text-tertiary: #64748b;
+    --border-primary: #22d3ee;
+    --border-secondary: #334155;
+    --glow-primary: rgba(34, 211, 238, 0.7);
+    --glow-secondary: rgba(74, 222, 128, 0.7);
+    --glow-tertiary: rgba(192, 132, 252, 0.7);
+    --user-bubble: #0891b2;
+    --model-bubble: #1e293b;
+    --mic-on: #ef4444;
+    --mic-off: #22d3ee;
+}
+
+[data-theme='liquid-metal'] {
+    --bg-primary: #111827;
+    --bg-secondary: rgba(31, 41, 55, 0.5);
+    --bg-tertiary: rgba(75, 85, 99, 0.7);
+    --bg-accent: #e5e7eb;
+    --text-primary: #f9fafb;
+    --text-secondary: #d1d5db;
+    --text-tertiary: #9ca3af;
+    --border-primary: #9ca3af;
+    --border-secondary: #4b5563;
+    --glow-primary: rgba(229, 231, 235, 0.6);
+    --glow-secondary: rgba(249, 250, 251, 0.6);
+    --glow-tertiary: rgba(209, 213, 219, 0.6);
+    --user-bubble: #4b5563;
+    --model-bubble: #1f2937;
+    --mic-on: #f87171;
+    --mic-off: #9ca3af;
+}
+
+[data-theme='retro-wave'] {
+    --bg-primary: #0c0028;
+    --bg-secondary: rgba(24, 9, 53, 0.5);
+    --bg-tertiary: rgba(57, 30, 108, 0.7);
+    --bg-accent: #f92ccc;
+    --text-primary: #f0eaff;
+    --text-secondary: #c59dfa;
+    --text-tertiary: #8e5cf1;
+    --border-primary: #00e5ff;
+    --border-secondary: #580894;
+    --glow-primary: rgba(0, 229, 255, 0.7);
+    --glow-secondary: rgba(249, 44, 204, 0.7);
+    --glow-tertiary: rgba(142, 92, 241, 0.8);
+    --user-bubble: #8e5cf1;
+    --model-bubble: #2a0e5a;
+    --mic-on: #ff3d7a;
+    --mic-off: #f92ccc;
+}
+
+[data-theme='bento-serenity'] {
+    --bg-primary: #f5f5f4;
+    --bg-secondary: rgba(255, 255, 255, 0.5);
+    --bg-tertiary: rgba(229, 231, 235, 0.7);
+    --bg-accent: #fb7185;
+    --text-primary: #292524;
+    --text-secondary: #78716c;
+    --text-tertiary: #a8a29e;
+    --border-primary: #fb7185;
+    --border-secondary: #e7e5e4;
+    --glow-primary: rgba(251, 113, 133, 0.5);
+    --glow-secondary: rgba(250, 204, 21, 0.6);
+    --glow-tertiary: rgba(167, 139, 250, 0.6);
+    --user-bubble: #f472b6;
+    --model-bubble: #ffffff;
+    --mic-on: #ef4444;
+    --mic-off: #fb7185;
+}
+
+[data-theme='cosmic-rift'] {
+    --bg-primary: #0a0a1a;
+    --bg-secondary: rgba(13, 13, 34, 0.5);
+    --bg-tertiary: rgba(30, 30, 68, 0.7);
+    --bg-accent: #38bdf8;
+    --text-primary: #e0e0ff;
+    --text-secondary: #a0a0e0;
+    --text-tertiary: #7070c0;
+    --border-primary: #38bdf8;
+    --border-secondary: #2a2a5a;
+    --glow-primary: rgba(56, 189, 248, 0.7);
+    --glow-secondary: rgba(236, 72, 153, 0.7);
+    --glow-tertiary: rgba(139, 92, 246, 0.7);
+    --user-bubble: #38bdf8;
+    --model-bubble: #141434;
+    --mic-on: #fb7185;
+    --mic-off: #38bdf8;
+}
+
+[data-theme='supernova-burst'] {
+    --bg-primary: #0a021a;
+    --bg-secondary: rgba(19, 7, 43, 0.5);
+    --bg-tertiary: rgba(44, 23, 85, 0.7);
+    --bg-accent: #ff8c00;
+    --text-primary: #f0f8ff;
+    --text-secondary: #c7b8e6;
+    --text-tertiary: #8a7f9d;
+    --border-primary: #ff8c00;
+    --border-secondary: #4b0082;
+    --glow-primary: rgba(255, 165, 0, 0.8);
+    --glow-secondary: rgba(255, 0, 255, 0.8);
+    --glow-tertiary: rgba(0, 191, 255, 0.8);
+    --user-bubble: #c75c00;
+    --model-bubble: #1c0b3b;
+    --mic-on: #ff4500;
+    --mic-off: #ff8c00;
+}
+
+/* Base body styles */
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#app-container {
+    background-color: var(--bg-primary);
+    position: relative;
+    overflow: hidden;
+    /* Base animation variables */
+    --anim-speed-1: 15s;
+    --anim-speed-2: 60s;
+    --anim-opacity-1: 1;
+    --anim-opacity-2: 0.5;
+    --anim-scale: 1;
+    /* User customizable modifiers */
+    --anim-speed-modifier: 1;
+    --anim-intensity-modifier: 1;
+    --anim-saturation-modifier: 1;
+}
+
+/* AI State-driven animation changes */
+#app-container[data-ai-state="thinking"] {
+    --anim-speed-1: 8s;
+    --anim-speed-2: 30s;
+    --anim-opacity-1: 1;
+    --anim-opacity-2: 0.7;
+    --anim-scale: 1.05;
+}
+#app-container[data-ai-state="speaking"] {
+    --anim-speed-1: 10s;
+    --anim-speed-2: 40s;
+    --anim-opacity-1: 1;
+    --anim-opacity-2: 0.6;
+    --anim-scale: 1.02;
+}
+
+.background-animation {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    opacity: 0;
+    transition: opacity 1s ease-in-out, transform 1s ease-in-out;
+    transform: scale(var(--anim-scale));
+    filter: saturate(var(--anim-saturation-modifier));
+}
+
+/* --- Animation Styles --- */
+[data-animation='aurora'] .background-animation {
+    background: linear-gradient(-45deg, var(--bg-primary), var(--border-secondary), var(--glow-tertiary), var(--glow-secondary));
+    background-size: 400% 400%;
+    animation: aurora-gradient ease infinite;
+    animation-duration: calc(var(--anim-speed-1) / var(--anim-speed-modifier, 1));
+    opacity: calc(var(--anim-opacity-2) * var(--anim-intensity-modifier, 1));
+}
+
+[data-animation='liquid-metal'] .background-animation {
+    background: linear-gradient(120deg, var(--bg-primary), var(--text-secondary), var(--text-primary), var(--border-secondary), var(--bg-primary));
+    background-size: 300% 300%;
+    animation: liquid-metal ease infinite;
+    animation-duration: calc(20s / var(--anim-speed-modifier, 1));
+    opacity: calc(0.7 * var(--anim-intensity-modifier, 1));
+}
+
+[data-animation='retro-grid'] .background-animation {
+    background: radial-gradient(ellipse at bottom, var(--glow-tertiary) 0%, var(--bg-primary) 80%);
+    opacity: calc(var(--anim-opacity-1) * var(--anim-intensity-modifier, 1));
+}
+
+[data-animation='retro-grid'] .background-animation::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-image:
+        linear-gradient(rgba(249, 44, 204, 0.4) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(249, 44, 204, 0.4) 1px, transparent 1px);
+    background-size: 40px 40px;
+    animation: retro-grid linear infinite;
+    animation-duration: calc(var(--anim-speed-1) / var(--anim-speed-modifier, 1));
+    perspective: 500px;
+}
+
+[data-animation='starfield'] .background-animation {
+    background-color: #000;
+    background-image: 
+        radial-gradient(white, rgba(255,255,255,.2) 2px, transparent 40px),
+        radial-gradient(white, rgba(255,255,255,.15) 1px, transparent 30px),
+        radial-gradient(white, rgba(255,255,255,.1) 2px, transparent 40px),
+        radial-gradient(rgba(255,255,255,.4), rgba(255,255,255,.1) 2px, transparent 30px);
+    background-size: 550px 550px, 350px 350px, 250px 250px, 150px 150px; 
+    background-position: 0 0, 40px 60px, 130px 270px, 70px 100px;
+    animation: starfield linear infinite;
+    animation-duration: calc(var(--anim-speed-2) / var(--anim-speed-modifier, 1));
+    opacity: calc(var(--anim-opacity-2) * var(--anim-intensity-modifier, 1));
+}
+
+[data-animation='supernova'] .background-animation {
+    background-color: var(--bg-primary);
+    background-image: 
+        radial-gradient(1px 1px at 20% 30%, #fff, transparent),
+        radial-gradient(1px 1px at 80% 60%, #fff, transparent),
+        radial-gradient(2px 2px at 50% 90%, #ddd, transparent);
+    background-repeat: repeat;
+    background-size: 100px 100px, 200px 200px, 400px 400px;
+    animation: parallax-stars linear infinite;
+    animation-duration: calc(120s / var(--anim-speed-modifier, 1));
+    opacity: calc(var(--anim-opacity-1) * var(--anim-intensity-modifier, 1));
+    overflow: hidden;
+}
+
+[data-animation='supernova'] .background-animation::before {
+    content: '';
+    position: absolute;
+    top: 50%; left: 50%;
+    width: 150vmax; height: 150vmax;
+    transform: translate(-50%, -50%);
+    background-image: radial-gradient(ellipse at center, var(--glow-primary) 0%, var(--glow-secondary) 40%, var(--border-secondary) 60%, transparent 70%);
+    border-radius: 50%;
+    animation: supernova-core-idle ease-in-out infinite alternate;
+    animation-duration: calc(20s / var(--anim-speed-modifier, 1));
+    mix-blend-mode: screen;
+    will-change: transform, opacity;
+}
+
+[data-animation='supernova'][data-ai-state="thinking"] .background-animation::before {
+    animation: supernova-core-thinking ease-in-out infinite alternate;
+    animation-duration: calc(1.5s / var(--anim-speed-modifier, 1));
+}
+
+[data-animation='supernova'][data-ai-state="speaking"] .background-animation::before {
+    animation: supernova-core-speaking ease-out infinite;
+    animation-duration: calc(10s / var(--anim-speed-modifier, 1));
+}
+
+[data-animation='supernova'] .background-animation::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 200px;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--glow-tertiary), transparent);
+    border-radius: 100%;
+    transform-origin: 0% 0%;
+    animation: comet-1 linear infinite;
+    animation-duration: calc(12s / var(--anim-speed-modifier, 1));
+    animation-delay: 2s;
+    box-shadow: 0 0 10px 2px var(--glow-tertiary);
+}
+
+/* Animation Selector Previews */
+.background-animation-preview {
+    position: absolute; top:0; left:0; width: 100%; height: 100%;
+}
+[data-animation-preview='aurora'] {
+    background: linear-gradient(-45deg, var(--bg-primary), var(--border-secondary), var(--glow-tertiary));
+    background-size: 400% 400%;
+    animation: aurora-gradient 10s ease infinite;
+}
+[data-animation-preview='liquid-metal'] {
+    background: linear-gradient(120deg, var(--bg-primary), var(--text-secondary), var(--border-secondary));
+    background-size: 300% 300%;
+    animation: liquid-metal 12s ease infinite;
+}
+[data-animation-preview='retro-grid'] {
+    background: radial-gradient(ellipse at bottom, var(--glow-tertiary) 0%, var(--bg-primary) 80%);
+}
+[data-animation-preview='starfield'] {
+    background-color: #000;
+    background-image: radial-gradient(white, rgba(255,255,255,.2) 1px, transparent 5px);
+    background-size: 30px 30px; 
+    animation: starfield 50s linear infinite;
+}
+[data-animation-preview='supernova']::before {
+    content: '';
+    position: absolute;
+    top: 50%; left: 50%;
+    width: 200%; height: 200%;
+    transform: translate(-50%, -50%);
+    background-image: radial-gradient(ellipse at center, var(--glow-primary) 0%, var(--glow-secondary) 50%, transparent 70%);
+    border-radius: 50%;
+    animation: supernova-core-idle 15s ease-in-out infinite alternate;
+    mix-blend-mode: screen;
+}
+
+/* Keyframes for animations */
+@keyframes aurora-gradient {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+@keyframes liquid-metal {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+@keyframes retro-grid {
+    from { background-position: 0 0; }
+    to { background-position: 0 40px; }
+}
+
+@keyframes starfield {
+  from { background-position:0 0; }
+  to { background-position:-1000px 500px; }
+}
+
+@keyframes parallax-stars {
+    from { background-position: 0 0, 0 0, 0 0; }
+    to { background-position: -1000px 600px, -2000px 1200px, -3000px 1800px; }
+}
+
+@keyframes supernova-core-idle {
+    from { transform: translate(-50%, -50%) scale(0.9) rotate(0deg); opacity: 0.7; }
+    to { transform: translate(-50%, -50%) scale(1.0) rotate(180deg); opacity: 0.8; }
+}
+
+@keyframes supernova-core-thinking {
+    from { transform: translate(-50%, -50%) scale(1.0); opacity: 0.8; box-shadow: 0 0 50px 10px var(--glow-primary); }
+    to { transform: translate(-50%, -50%) scale(1.05); opacity: 1; box-shadow: 0 0 80px 20px var(--glow-primary); }
+}
+
+@keyframes supernova-core-speaking {
+    0% { transform: translate(-50%, -50%) scale(1.02); opacity: 1; }
+    50% { transform: translate(-50%, -50%) scale(1.1); opacity: 0.9; }
+    100% { transform: translate(-50%, -50%) scale(1.02); opacity: 1; }
+}
+
+@keyframes comet-1 {
+    0% {
+        transform: rotate(45deg) translateX(0);
+        opacity: 0;
+    }
+    10% { opacity: 1; }
+    20% {
+        transform: rotate(45deg) translateX(100vmax);
+        opacity: 0;
+    }
+    100% { opacity: 0; }
+}
+
+
+/* Visualizer bar styles based on state and theme */
+.bars-bg-primary div { background-color: var(--border-primary); }
+.bars-bg-secondary div { background-color: var(--glow-secondary); }
+.bars-bg-tertiary div { background-color: var(--text-tertiary); }
+
+/* Custom Slider Styles */
+.slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 100%;
+    height: 6px;
+    background: var(--bg-tertiary);
+    border-radius: 5px;
+    outline: none;
+    opacity: 0.7;
+    transition: opacity .2s;
+}
+
+.slider-thumb:hover {
+    opacity: 1;
+}
+
+.slider-thumb::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 18px;
+    height: 18px;
+    background: var(--bg-accent);
+    cursor: pointer;
+    border-radius: 50%;
+    border: 2px solid var(--bg-secondary);
+}
+
+.slider-thumb::-moz-range-thumb {
+    width: 16px;
+    height: 16px;
+    background: var(--bg-accent);
+    cursor: pointer;
+    border-radius: 50%;
+    border: 2px solid var(--bg-secondary);
+}
+
+/* Horizontal Scroll Container */
+.horizontal-scroll {
+    overflow-x: auto;
+    white-space: nowrap;
+    -webkit-overflow-scrolling: touch; /* for smooth scrolling on iOS */
+}
+/* Hide scrollbar for WebKit browsers */
+.horizontal-scroll::-webkit-scrollbar {
+    display: none;
+}
+/* Hide scrollbar for IE, Edge and Firefox */
+.horizontal-scroll {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+}

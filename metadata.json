@@ -1,0 +1,7 @@
+{
+  "name": "AuraLink AI",
+  "description": "A real-time conversational AI assistant that provides a natural, face-to-face-like conversation using the Gemini Live API for low-latency voice and text streaming.",
+  "requestFramePermissions": [
+    "microphone"
+  ]
+}
